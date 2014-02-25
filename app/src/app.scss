@@ -1,0 +1,394 @@
+@import "bourbon/bourbon";
+
+$visual-grid: false;
+$visual-grid-color: yellow;
+$visual-grid-index: behind;
+$visual-grid-opacity: 0.3;
+
+$gutter: em(20);
+
+$grid-columns: 12;
+$max-width: em(1024);
+
+@import "neat/neat";
+
+$mobile: new-breakpoint(max-width 640px 6);
+$tablet: new-breakpoint(max-width 768px 8);
+
+$contrast : #eaedf1;
+$dark : #2D373F;
+$blue : #05B2D2;
+$orange : #d42;
+
+$base-text-shadow : 0px 0px 12px rgba(0, 0, 0, 0.3);
+
+html {
+	font-size: 100%;
+    line-height: 1.4;
+    font-family: "futura-pt", 'Helvetica', 'Arial', sans-serif;
+    background: $contrast;
+    color: $dark;
+}
+
+input, textarea, select {
+	font-family: "futura-pt", 'Helvetica', 'Arial', sans-serif;
+}
+
+h1 {
+  color: #333;
+  font-weight: 600;
+  font-size: 2em;
+  line-height: 1;
+  letter-spacing: -0.03125em;
+  word-wrap: break-word;
+  margin: 1em 0 0.5em;
+}
+h2 {
+  color: #d42;
+  font-weight: 600;
+  font-size: 1.5em;
+  line-height: 1;
+  letter-spacing: 0;
+  margin: 1em 0;
+  padding: 0.3333em 0 0;
+}
+h3{
+  color: #333;
+  font-weight: 600;
+  font-size: 1.25em;
+  line-height: 1.2;
+  margin: 1.2em 0 0;
+  border-top: 0 none;
+}
+h4 {
+  color: #444;
+  font-weight: 600;
+  font-size: 1em;
+  line-height: 1;
+  margin: 1.5em 0 0;
+}
+h5 {
+  color: #555;
+  font-weight: 600;
+  font-size: 0.875em;
+  line-height: 1.1429;
+  text-transform: uppercase;
+  letter-spacing: 0.1429em;
+  margin: 1.7143em 0 0;
+}
+h6 {
+  color: #666;
+  font-size: 0.875em;
+  line-height: 1.1429;
+}
+small {
+  font-size: 0.775em;
+  line-height: 1;
+}
+strong  {   font-weight: bold;  }
+em      {   font-style: italic; }
+
+section.container {
+	@include outer-container;
+}
+
+button {
+	border : 0;
+	color : #fff;
+}
+
+select.pwSelect {
+    border: none;
+    box-shadow: none;
+    border-radius: 0px;
+    background-image: none;
+    -webkit-appearance: none;
+       -moz-appearance: none;
+            appearance: none;
+}
+
+input, select, .pwSelect, textarea {
+	border: 0;
+	background: #fff;
+	padding: 8px;
+	font-size: 1.1em;
+}
+
+table {
+	background: #fff;
+	width: 100%;
+	thead {
+		tr th {
+			padding: 12px;
+			font-weight: 600;
+			text-transform: uppercase;
+			color: darken($contrast, 8%);
+			border-bottom: 1px solid darken(#fff, 6%);
+			border-right: 1px solid darken(#fff, 6%);
+		}
+		tr th:last-of-type {
+			border-right: none;
+		}
+	}
+	tbody {
+		tr td {
+			padding: 12px 8px;
+			color: lighten($dark, 12%);
+			text-align: center;
+			border-bottom: 1px solid darken(#fff, 4%);
+			border-right: 1px solid darken(#fff, 4%);
+			&.tal {
+				text-align: left;
+			}
+		}
+		tr:last-of-type {
+			border-bottom: none;
+		}
+		tr td:last-of-type {
+			border-right: none;
+		}
+	}
+}
+
+.btn {
+	padding: 10px;
+	font-weight: 300;
+	text-transform: uppercase;
+	background: $blue;
+	text-shadow: $base-text-shadow;
+	cursor: pointer;
+}
+
+.btn:hover {
+	background: darken($blue, 2%);
+}
+
+input[type="submit"] {
+	background: $orange;
+	color: #fff;
+	margin: 0 auto;
+	display: block;
+	width: 160px;
+	&:hover {
+		background: darken($orange, 2%);
+	}
+}
+
+.md-preview {
+	padding: 10px 0;
+}
+
+fieldset {
+	@include span-columns(8);
+	@include row();
+
+	legend {
+		font-size: 1.1em;
+		font-weight: 600;
+		color: #666;
+		padding: 40px 0 40px 40px;
+	}
+
+	label {
+		font-weight: 600;
+		@include span-columns(6);
+		text-align: right;
+		line-height: 2.1em;
+		font-size: 1.2em;
+		@include media($tablet) {
+			text-align: left;
+		}
+		@include media($mobile) {
+			text-align: left;
+		}
+	}
+
+	&.vertical {
+		label {
+			@include span-columns(12);
+			text-align: left;
+		}
+		input, select, .pwSelect, textarea {
+			@include span-columns(12);
+		}
+
+	}
+
+	input, select, .pwSelect, textarea {
+		@include span-columns(6);
+		@include omega();
+		@include row();
+		&.multi {
+			@include span-columns(4);
+		}
+	}
+
+	.secondary-row {
+		@include shift(6);
+		clear: both;
+	}
+
+	ul {
+		@include span-columns(6);
+		@include shift(6);
+		list-style-type: circle;
+		margin-top: 20px;
+		margin-bottom: 20px;
+		padding: 10px 0 10px 0;
+		border-top: 1px dashed #DEDEDE;
+		border-bottom: 1px dashed #DEDEDE;
+		li {
+			padding: 10px 0 10px 0;
+		}
+	}
+
+	.btn {
+		@include span-columns(2);
+		@include omega();
+		padding: 13px;
+	}
+
+	small {
+		display: block;
+	}
+
+	.hints--sortable-usage {
+		position: relative;
+		li:first-of-type:before {
+			content: "Most Used";
+			top: 0px;
+		}
+		li:last-of-type:after {
+			content : "Least Used";
+			bottom: 0px;
+		}
+		li:first-of-type:before, li:last-of-type:after {
+			font-weight: 300;
+			text-transform: uppercase;
+			position: absolute;
+			font-size: 0.6em;
+			text-align: right;
+			color: darken($contrast, 20%);
+			left: -66px;
+		}
+	}
+
+	.hints--sortable {
+		position: relative;
+		li:first-of-type:before {
+			content: "Most Used";
+			top: 0px;
+		}
+		li:last-of-type:after {
+			content : "Least Used";
+			bottom: 0px;
+		}
+		li:first-of-type:before, li:last-of-type:after {
+			font-weight: 300;
+			text-transform: uppercase;
+			position: absolute;
+			font-size: 0.6em;
+			text-align: right;
+			color: darken($contrast, 20%);
+			left: -66px;
+		}
+	}
+
+	.hints--priority {
+		li:first-of-type:before {
+			content : "Highest Priority";
+		}
+		li:last-of-type:after {
+			content : "Lowest Priority";
+		}
+		li:first-of-type:before, li:last-of-type:after {
+			left: -82px;
+		}
+	}
+
+}
+
+.form-footer {
+	border-top: 1px solid darken($contrast, 4%);
+	padding: 1em;
+	margin-top: 2em;
+	@include span-columns(12);
+	@include row();
+}
+
+.sticky {
+	position: fixed;
+}
+
+nav {
+	background: rgba(0, 0, 0, 0.2);
+	color: #fff;
+	padding: 1em;
+	section.history {
+		@include span-columns(2);
+	}
+	section.user {
+		@include span-columns(2);
+		float: right;
+	}
+}
+
+/* Issues Page */
+
+.issue-core {
+	@include span-columns(8);
+}
+
+.issue-info {
+	@include span-columns(4);
+	@include omega();
+}
+
+.ghost-commit {
+	opacity: 0.6;
+	small {
+		display: block;
+	}
+}
+
+.issue-discussion {
+	margin-top: 2em;
+	border-top: 1px dashed #DEDEDE;
+}
+
+.issue-commit {
+	margin-bottom: 2em;
+	background: #fff;
+	padding: 1em;
+}
+
+/* Angular Animation */
+
+.ghost-commit {
+	@include transition (opacity 1.0s ease-in);
+}
+ 
+.ghost-commit.ng-hide-add,
+.ghost-commit.ng-hide-remove {
+  display:block!important;
+}
+.ghost-commit.ng-show {
+	opacity: 0.6;
+}
+.ghost-commit.ng-hide {
+	opacity:0;
+}
+
+table tr.ng-enter, 
+table tr.ng-leave, 
+table tr.ng-move {
+  -webkit-transition: 0.5s linear all;
+  transition: 0.5s linear all;
+}
+
+table tr.ng-enter {
+	opacity: 0;
+}
+table tr.ng-enter.ng-enter-active {
+	opacity : 1;
+}

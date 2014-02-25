@@ -1,0 +1,8 @@
+{
+	"mail" : {
+
+	},
+	"db" : {
+		"url" : "mongodb://localhost/sol"
+	}
+}

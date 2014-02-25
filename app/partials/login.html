@@ -1,0 +1,13 @@
+<section class="login">
+	<fieldset>
+		<legend>Login</legend>
+		<label>E-mail</label>
+		<input type="text" name="username" ng-model="login.email" placeholder="joe.bloggs@acme.co.uk" />
+		<label>Password</label>
+		<input type="password" ng-model="login.password" />
+	</fieldset>
+
+	<div class="form-footer">
+		<input ng-click="doLogin()" type="submit" value="Log in!" />
+	</div>
+</section>

@@ -1,0 +1,36 @@
+<section class="projects container">
+
+	<article class="no-projects" ng-show="projects.length == 0">
+		<h3>Hmmm, seems you don't have any projects yet...</h3>
+		<form ng-submit="createProject()">
+		<fieldset>
+			<legend>Add One!</legend>
+			<label>Project Name</label>
+			<input type="text" ng-model="project.name" placeholder="My Project" name="proj-name" />
+			<label>Project Description</label>
+			<textarea name="project-description" rows="4" ng-init="project.description = 'I **support** Markdown'" ng-model="project.description">
+			</textarea>
+			<div markdown="project.description" class="md-preview secondary-row">
+			</div>
+		</fieldset>
+		<div class="form-footer">
+			<input type="submit" value="Create Project" />
+		</div>
+		</form>
+	</article>
+
+	<article class="invite-user" ng-controller="inviteCtrl">
+		<input type="text" ng-model="invitee" placeholder="Invitee E-mail" />
+		<button class="btn" ng-click="invite()">Invite</button>
+	</article>
+
+	<article ng-repeat="p in projects">
+		<h2 ng-bind="p.name"></h2>
+		<div class="project-description" markdown="p.desc">
+		</div>
+		<h2 ng-bind="p.issues.length"></h2>
+		<p>Issues</p>
+		<a href="#/project/{{p.url}}">View Project</a>
+	</article>
+
+</section>

@@ -1,0 +1,63 @@
+<section class="container">
+	<section class="project-display">
+		<h1 ng-bind="p.name"></h1>
+		<div markdown="p.desc"></div>
+	</section>
+
+	<section class="issues-table">
+		<table>
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Issue</th>
+					<th>Priority</th>
+					<th>Status</th>
+					<th>Group</th>
+					<th>Assignee</th>
+					<th>Created</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-click="goToIssue(i.id)" ng-repeat="i in projectIssues">
+					<td>{{i.id}}</td>
+					<td class="tal">{{i.issue}}</td>
+					<td>{{i.priority}}</td>
+					<td>{{i.status}}</td>
+					<td>{{i.group}}</td>
+					<td>{{i.assignee.name}}</td>
+					<td datewatch="extended" data-date="{{i.posted}}"></td>
+				</tr>
+			</tbody>
+		</table>
+	</section>
+
+	<section class="add-issue">
+		<form ng-submit="addIssue()">
+			<fieldset>
+				<legend>Add Issue</legend>
+				<label>Issue</label>
+				<input type="text" ng-model="issue.issue" />
+				<label>Description</label>
+				<textarea ng-model="issue.description">
+				</textarea>
+				<label>Priority</label>
+				<select class="pwSelect" ng-model="issue.priority" required ng-options="p.name as p.name for p in solConfig.settings.priorities.data">
+				</select>
+				<label>Status</label>
+				<select class="pwSelect" ng-model="issue.status" required ng-options="s.name as s.name for s in solConfig.settings.statuses.data">
+				</select>
+				<label>User Group</label>
+				<select class="pwSelect" ng-model="issue.group" required ng-options="a.name as a.name for a in solConfig.settings.groups.data">
+				</select>
+				<label>Assignee</label>
+				<select class="pwSelect" ng-model="issue.assignee" ng-init="issue.assignee = solUsers[0]" required ng-options="u._id as u.name for u in solUsers">
+				</select>
+				<label>Url</label>
+				<input type="text" ng-model="issue.url" />
+			</fieldset>
+			<div class="form-footer">
+				<input type="submit" value="Create Issue" />
+			</div>
+		</form>
+	</section>
+</section>

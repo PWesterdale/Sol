@@ -1,0 +1,83 @@
+<section class="container">
+	<section class="issue-core">
+		<h1>
+			#<span ng-bind="issue.id"></span> 
+			<span ng-bind="issue.issue"></span>
+		</h1>
+		<div markdown="issue.description"></div>
+
+		<section class="issue-discussion">
+			<article class="issue-commit">
+				<p>Issue was created.</p>
+				<h4>
+					<span ng-bind="issue.creator.name"></span> - 
+					<span datewatch="extended" data-date="{{issue.posted}}"></span>
+				</h4>
+			</article>
+			<article class="issue-commit" ng-repeat="commit in issue.commits">
+				<div class="commit-message" markdown="commit.message"></div>
+				<small ng-repeat="action in commit.actions">
+					Set <strong>{{action.type}}</strong> from 
+					<span soltransform data-type="{{action.type}}" data-original="action.from"></span> to 
+					<span soltransform data-type="{{action.type}}" data-original="action.to"></span>
+				</small>
+				<h4>
+					<span ng-bind="participants[commit.creator].name"></span> - 
+					<span datewatch="extended" data-date="{{commit.posted}}"></span>
+				</h4>
+				
+			</article>
+			<article ng-show="diff" class="issue-commit ghost-commit">
+				<div markdown="commit.notes"></div>
+				<small ng-show="diffOn.status">Set <strong>status</strong> from {{issue.status}} to {{commit.status}}</small>
+				<small ng-show="diffOn.priority">Set <strong>priority</strong> from {{issue.priority}} to {{commit.priority}}</small>
+				<small ng-show="diffOn.group">Set <strong>group</strong> from {{issue.group}} to {{commit.group}}</small>
+				<small ng-show="diffOn.assignee">
+					Set <strong>assignee</strong> from 
+					<span ng-bind="solUsersById[issue.assignee].name"></span> to 
+					<span ng-bind="solUsersById[commit.assignee].name"></span>
+				</small>
+				<h4>
+					You - 
+					Right Now
+				</h4>
+			</article>
+			<form ng-submit="updateIssue()">
+				<fieldset class="vertical">
+					<legend>Update Issue</legend>
+					<label>Status</label>
+					<select class="pwSelect" ng-change="commitDiff()" ng-model="commit.status" required ng-options="s.name as s.name for s in solConfig.settings.statuses.data">
+					</select>
+					<label>Priority</label>
+					<select class="pwSelect" ng-change="commitDiff()" ng-model="commit.priority" required ng-options="p.name as p.name for p in solConfig.settings.priorities.data">
+					</select>
+					<label>User Group</label>
+					<select class="pwSelect" ng-change="commitDiff()" ng-model="commit.group" required ng-options="a.name as a.name for a in solConfig.settings.groups.data">
+					</select>
+					<label>Assignee</label>
+					<select class="pwSelect" ng-change="commitDiff()" ng-model="commit.assignee" required ng-options="u._id as u.name for u in solUsers">
+					</select>
+					<label>Notes</label>
+					<textarea ng-model="commit.notes">
+					</textarea>
+				</fieldset>
+				<div class="form-footer">
+					<input type="submit" value="Update Issue" />
+				</div>
+			</form>
+		</section>
+
+	</section>
+
+	<section class="issue-info">
+		<div class="sticky">
+			<h1>Status</h1>
+			<h2 ng-bind="issue.status"></h2>
+			<h1>Priority</h1>
+			<h2 ng-bind="issue.priority"></h2>
+			<h1>Group</h1>
+			<h2 ng-bind="issue.group"></h2>
+		</div>
+	</section>
+
+</section>
