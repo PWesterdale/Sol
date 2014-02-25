@@ -1,12 +1,26 @@
 {
-  "name": "angularjs-seed",
-  "description": "A starter project for AngularJS",
-  "repository": "https://github.com/angular/angular-seed",
-  "devDependencies": {
-    "phantomjs" : "~1.9",
-    "karma" : "~0.10",
-    "karma-junit-reporter" : "~0.1",
-    "karma-jasmine" : "~0.1",
-    "protractor" : "~0.17.0"
-  }
+  "name": "Sol",
+  "version": "0.0.1",
+  "description": "A simple bug tracker",
+  "main": "server/server.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "async": "~0.2.10",
+    "bcrypt": "~0.7.7",
+    "ejs": "~0.8.5",
+    "connect-mongo": "~0.4.0",
+    "express": "~3.4.8",
+    "express-mailer": "~0.2.2",
+    "faye": "~1.0.1",
+    "mongoose": "~3.8.6",
+    "node-uuid": "~1.4.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "BSD-2-Clause"
 }
